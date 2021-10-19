@@ -91,3 +91,36 @@ print(a, b)
 # 変数の入れ替えが簡単に出来る
 a, b = b, a
 print(a, b)
+# 辞書型:キーバリュー形式の配列みたいなもの？連想配列的なやつ
+d = {'x': 10, 'y': 20}
+print(d)
+# help(d)
+d2 = {'x': 1000, 'j': 500}
+d.update(d2)
+d.get(x)
+print(d)
+'a' in d
+# 参照渡しになるため、copyメソッドを使用すること
+x = {'a': 500}
+y = x
+# y['a'] = 1000
+y = x.copy()
+y['a'] = 1000
+print(x)
+print(y)
+# 集合型:indexは存在しない（並びという概念が無い）
+a = {2, 3, 7, 6, 3, 1, 3, 9}
+b = {1, 2, 7}
+print(a - b)
+print(a & b)
+print(a | b)
+print(a ^ b)
+
+a.add(1000)
+print(a)
+a.remove(1)
+print(a)
+# リストから集合型にキャストすることで、重複を排除することが可能
+f = ['apple', 'banana', 'apple', 'banana']
+kind = set(f)
+print(kind)
