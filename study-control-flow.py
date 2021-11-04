@@ -284,3 +284,47 @@ def sample_func(word): return word.capitalize()
 # functionを引数とするものは引数の中で定義すればコード量の削減につなげられる
 change_words(sample_list, sample_func)
 change_words(sample_list, lambda word: word.capitalize())
+
+# ジェネレータ
+# for文のように一度の処理で全てのループを抜けてしまうのではなく、
+# yieldごとのデータを保持するので、途中に処理を挟むなどの用途に使用することが可能
+# l = ['Good morning', 'Good afternoon', 'Good evening']
+
+# for i in l:
+#     print(i)
+
+# print('#########')
+
+
+def counter(num=10):
+    for _ in range(num):
+        yield 'run'
+
+
+def greetin():
+    yield 'Good mornig'
+    for i in range(100000):
+        print(i)
+    yield 'Good afternoon'
+    for i in range(100000):
+        print(i)
+    yield 'Good evening'
+
+
+g = greetin()
+c = counter()
+print(next(g))
+print(next(c))
+print(next(c))
+print(next(c))
+print(next(c))
+print('@@@@@@@@@@')
+print(next(c))
+print(next(c))
+print(next(c))
+print(next(c))
+print(next(g))
+
+print('@@@@@@@@@@')
+
+print(next(g))
