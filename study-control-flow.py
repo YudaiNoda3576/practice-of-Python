@@ -300,6 +300,8 @@ def counter(num=10):
     for _ in range(num):
         yield 'run'
 
+# 重い処理がyieldの途中に挟まっている場合等に小分けに処理を行うことが可能
+
 
 def greetin():
     yield 'Good mornig'
@@ -328,3 +330,26 @@ print(next(g))
 print('@@@@@@@@@@')
 
 print(next(g))
+
+# リスト内包表記
+t = (1, 2, 3, 4, 5)
+t2 = (6, 7, 8, 9, 10)
+r = []
+
+for i in t:
+    r.append(i)
+
+print(r)
+# メモリの節約、処理の高速化
+r = [i for i in t if i % 2 == 0]
+print(r)
+
+r = []
+for i in t:
+    for j in t2:
+        r.append(i * j)
+
+print(r)
+
+r = [i * j for i in t for j in t2]
+print(r)
