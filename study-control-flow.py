@@ -305,11 +305,11 @@ def counter(num=10):
 
 def greetin():
     yield 'Good mornig'
-    for i in range(100000):
-        print(i)
+    # for i in range(100000):
+    #     print(i)
     yield 'Good afternoon'
-    for i in range(100000):
-        print(i)
+    # for i in range(100000):
+    # print(i)
     yield 'Good evening'
 
 
@@ -353,3 +353,82 @@ print(r)
 
 r = [i * j for i in t for j in t2]
 print(r)
+# 辞書包括表記
+w = ['mon', 'tue', 'wed']
+f = ['coffee', 'milk', 'juice']
+
+d = {}
+for x, y in zip(w, f):
+    d[x] = y
+
+print(d)
+
+d = {x: y for x, y in zip(w, f)}
+print(d)
+
+# ジェネレータ内包表記
+
+
+def g():
+    for i in range(10):
+        yield i
+
+
+g = g()
+print(type(g))
+print(next(g))
+
+g = (i for i in range(10))
+# tupleと間違えないように
+g = tuple(i for i in range(10))
+
+# 名前空間とスコープ
+animal = 'cat'
+
+
+def f():
+    # ローカル変数を参照するので未定義になる
+    # グローバル変数のアニマルを書き換える場合は
+    global animal
+    animal = 'dog'
+    print('local:', animal)
+
+
+f()
+print('global:', animal)
+
+# 例外処理
+l = [1, 2, 3]
+i = 5
+
+try:
+    l[i]
+except IndexError as ex:
+    print("Don't Worry: {}".format(ex))
+except NameError as ex:
+    print(ex)
+except Exception as ex:
+    print("other:{}".format(ex))
+# 正常実行出来た場合にelse句に処理が入っていく
+else:
+    print('done')
+finally:
+    print("例外出してるんじゃねーよ！！！")
+# 独自例外の作成
+
+
+class UpperCaseError(Exception):
+    pass
+
+
+def check():
+    words = ['apple', 'orange', 'banana']
+    for word in words:
+        if word.isupper():
+            raise UpperCaseError(word)
+
+
+try:
+    check()
+except UpperCaseError as exc:
+    print("This is my fault. Go next")
